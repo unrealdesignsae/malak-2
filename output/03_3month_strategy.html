@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Entourage — 3-Month Social Media Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  :root { --bg:#f5f5f7;--surface:#fff;--s2:#f5f5f7;--tp:#1d1d1f;--ts:#6e6e73;--tt:#8e8e93;--ac:#0071e3;--ag:#34c759;--ar:#ff3b30;--ao:#ff9500;--bd:#d2d2d7;--bl:#e8e8ed;--r:12px;--rl:18px; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--tp);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased}
+  .page{max-width:900px;margin:0 auto;padding:60px 48px}
+  .cover{background:linear-gradient(145deg,#0a0a0a,#1c1c1e 60%,#0a2a0a);color:#fff;padding:80px 60px;border-radius:var(--rl);margin-bottom:48px;position:relative;overflow:hidden}
+  .cover::after{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,113,227,.15),transparent 70%)}
+  .ctag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#0a84ff;margin-bottom:20px}
+  .cover h1{font-size:44px;font-weight:700;line-height:1.08;letter-spacing:-.8px;margin-bottom:16px}
+  .csub{font-size:17px;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:48px}
+  .phases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px}
+  .ph{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:18px}
+  .ph-n{font-size:11px;color:rgba(255,255,255,.4);font-weight:600;letter-spacing:.1em;margin-bottom:6px}
+  .ph-t{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px}
+  .ph-s{font-size:12px;color:rgba(255,255,255,.45)}
+  h2{font-size:22px;font-weight:700;letter-spacing:-.3px}
+  h3{font-size:17px;font-weight:600;margin:28px 0 12px}
+  h4{font-size:11.5px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.1em;margin:20px 0 10px}
+  .sh{display:flex;align-items:center;gap:12px;margin:52px 0 22px}
+  .sd{width:8px;height:8px;border-radius:50%;background:var(--ac);flex-shrink:0}
+  .sd.g{background:var(--ag)}.sd.o{background:var(--ao)}.sd.r{background:var(--ar)}
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--surface);border-radius:var(--r);border:1px solid var(--bl);overflow:hidden;margin-bottom:20px;font-size:13.5px}
+  th{background:var(--s2);padding:10px 14px;text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ts);border-bottom:1px solid var(--bl)}
+  td{padding:11px 14px;border-bottom:1px solid var(--bl);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .bx{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:600}
+  .bx.g{background:rgba(52,199,89,.12);color:#1a7a3a}.bx.b{background:rgba(0,113,227,.1);color:#0040a3}.bx.o{background:rgba(255,149,0,.12);color:#7a4800}
+  .card{background:var(--surface);border-radius:var(--r);padding:24px 28px;margin-bottom:16px;border:1px solid var(--bl)}
+  .pg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+  .pc{background:var(--surface);border:1px solid var(--bl);border-radius:var(--r);padding:18px 20px}
+  .pv{font-size:28px;font-weight:700;color:var(--ac);line-height:1;margin-bottom:6px}
+  .pn{font-size:14px;font-weight:700;margin-bottom:4px}
+  .pd{font-size:12.5px;color:var(--ts)}
+  .wc{background:var(--surface);border:1px solid var(--bl);border-radius:var(--r);margin-bottom:14px;overflow:hidden}
+  .wh{padding:16px 22px;border-bottom:1px solid var(--bl);display:flex;align-items:center;justify-content:space-between;background:var(--s2)}
+  .wt{font-size:15px;font-weight:700}
+  .wb{padding:16px 22px}
+  .ws{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+  .sn{width:20px;height:20px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+  .st{font-size:13.5px;color:var(--tp)}
+  .wo{margin-top:12px;background:rgba(52,199,89,.07);border-radius:8px;padding:10px 14px;font-size:13px}
+  .wo strong{color:#1a7a3a}
+  .kg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+  .kc{background:var(--surface);border:1px solid var(--bl);border-radius:var(--r);padding:18px 20px;text-align:center}
+  .kv{font-size:26px;font-weight:700}
+  .km{font-size:13px;color:var(--ts);margin-top:4px}
+  .kp{font-size:11px;color:var(--ac);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+  .co{border-radius:var(--r);padding:18px 22px;margin:20px 0;display:flex;gap:14px;font-size:14px}
+  .co.t{background:rgba(52,199,89,.06);border-left:3px solid var(--ag)}
+  .co.n{background:rgba(0,113,227,.06);border-left:3px solid var(--ac)}
+  .co.i{background:rgba(255,59,48,.06);border-left:3px solid var(--ar)}
+  .ci{font-size:18px;flex-shrink:0}
+  .cl li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bl);font-size:14px;list-style:none}
+  .cl li:last-child{border-bottom:none}
+  .cb{width:18px;height:18px;border:1.5px solid var(--bd);border-radius:5px;flex-shrink:0;margin-top:2px}
+  .ft{margin-top:64px;padding-top:24px;border-top:1px solid var(--bl);display:flex;justify-content:space-between;font-size:12px;color:var(--tt)}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="cover">
+    <div class="ctag">Strategic Document — Confidential</div>
+    <h1>3-Month Social<br>Media Strategy</h1>
+    <div class="csub">May – July 2026 · Paid Ads · Production Requirements · Agentic Workflows</div>
+    <div class="phases">
+      <div class="ph"><div class="ph-n">MONTH 1 — MAY</div><div class="ph-t">Foundation</div><div class="ph-s">"Build the machine before you run it"</div></div>
+      <div class="ph"><div class="ph-n">MONTH 2 — JUNE</div><div class="ph-t">Amplification</div><div class="ph-s">"Turn the volume up"</div></div>
+      <div class="ph"><div class="ph-n">MONTH 3 — JULY</div><div class="ph-t">Scale &amp; Convert</div><div class="ph-s">"Convert reach into revenue"</div></div>
+    </div>
+  </div>
+
+  <div class="co i"><div class="ci">🎯</div><div><strong>Strategic North Star:</strong> Close the gap between Entourage's elite client roster (G20, Saudi Aramco, Richard Mille, Roshn) and its social media footprint. Every post should make a potential client think: <em>"These people have done work at a scale I need."</em></div></div>
+
+  <div class="sh"><div class="sd"></div><h2>Platform Strategy by Channel</h2></div>
+  <table>
+    <thead><tr><th>Platform</th><th>Goal</th><th>Target Audience</th><th>Monthly Budget</th></tr></thead>
+    <tbody>
+      <tr><td><strong>LinkedIn</strong></td><td>Thought leadership + B2B leads</td><td>CMOs, Govt comms directors</td><td><span class="bx b">$2,000</span></td></tr>
+      <tr><td><strong>Instagram</strong></td><td>Portfolio showcase + awareness</td><td>Regional marketers, scouts</td><td><span class="bx b">$1,500</span></td></tr>
+      <tr><td><strong>TikTok</strong></td><td>Reach + brand virality</td><td>Gen Z, junior marketers</td><td><span class="bx b">$800</span></td></tr>
+      <tr><td><strong>Snapchat</strong></td><td>KSA market penetration</td><td>Saudi brand managers</td><td><span class="bx b">$700</span></td></tr>
+      <tr><td><strong>X (Twitter)</strong></td><td>Real-time industry voice</td><td>Journalists, media peers</td><td><span class="bx g">Organic</span></td></tr>
+      <tr><td><strong>YouTube</strong></td><td>Long-form case studies</td><td>Enterprise prospects</td><td><span class="bx b">$500</span></td></tr>
+      <tr style="background:rgba(0,0,0,.02)"><td colspan="3"><strong>Monthly Total</strong></td><td><span class="bx o">$5,500 / month</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh"><div class="sd g"></div><h2>Content Pillars — The 5 Buckets</h2></div>
+  <div class="pg">
+    <div class="pc"><div class="pv">35%</div><div class="pn">Proof</div><div class="pd">Case studies with hard numbers, project reveals, client results. Carousels + Reels.</div></div>
+    <div class="pc"><div class="pv">25%</div><div class="pn">Perspective</div><div class="pd">CEO POV, industry takes, trend analysis, GCC hot takes. Videos + LinkedIn articles.</div></div>
+    <div class="pc"><div class="pv">20%</div><div class="pn">Process</div><div class="pd">BTS production content, team at work, creative process. Reels + TikToks + Stories.</div></div>
+    <div class="pc"><div class="pv">12%</div><div class="pn">People</div><div class="pd">Team spotlights, culture moments, Ramadan/National Day activations. Stories + carousels.</div></div>
+  </div>
+  <div class="card" style="border:1px dashed var(--bl);background:var(--s2);padding:16px 22px;font-size:14px;color:var(--ts)"><strong style="color:var(--tp)">8% — Pulse:</strong> Real-time event coverage, industry news commentary, awards. Format: X threads, Stories, quick Reels.</div>
+
+  <div class="sh"><div class="sd o"></div><h2>Month 1: May — Portfolio Blitz Week</h2></div>
+  <table>
+    <thead><tr><th>Day</th><th>Platform</th><th>Project</th><th>Lead Metric</th></tr></thead>
+    <tbody>
+      <tr><td>Mon May 11</td><td>LinkedIn + IG</td><td>G20 Saudi Arabia 2020</td><td>"24 conferences. 28 countries. Zero failures."</td></tr>
+      <tr><td>Tue May 12</td><td>TikTok + Story</td><td>Roshn Saudi League</td><td>BTS drone show reel — 2,000 drones</td></tr>
+      <tr><td>Wed May 13</td><td>LinkedIn + IG</td><td>Ithra Eid Al Fitr 2026</td><td>"60,000 visitors. 28 activations. 3 days."</td></tr>
+      <tr><td>Thu May 14</td><td>LinkedIn</td><td>Emirates Red Crescent</td><td>"12,000 meals. 400/day."</td></tr>
+      <tr><td>Fri May 15</td><td>IG + Snapchat</td><td>Richard Mille Desert Polo</td><td>Visual luxury showcase — AlUla, 4 weeks</td></tr>
+      <tr><td>Sun May 17</td><td>LinkedIn</td><td>Transport General Authority KSA</td><td>"Reach is easy. Behavior change is hard."</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh"><div class="sd r"></div><h2>3-Month Paid Ads Summary</h2></div>
+  <table>
+    <thead><tr><th>Campaign</th><th>Month</th><th>Platform</th><th>Budget</th><th>KPI</th></tr></thead>
+    <tbody>
+      <tr><td>Proof of Scale</td><td>May</td><td>LinkedIn</td><td>$800</td><td>CPM &lt; $8</td></tr>
+      <tr><td>Portfolio Reach</td><td>May</td><td>Instagram</td><td>$500</td><td>CPC &lt; $0.50</td></tr>
+      <tr><td>Thought Leader / Report</td><td>June</td><td>LinkedIn</td><td>$1,200</td><td>CPL &lt; $25</td></tr>
+      <tr><td>TikTok Brand Bump</td><td>June</td><td>TikTok</td><td>$400</td><td>CPF &lt; $0.30</td></tr>
+      <tr><td>Saudi Market Entry</td><td>June</td><td>Snapchat</td><td>$400</td><td>CPM &lt; $5</td></tr>
+      <tr><td>Report Distribution</td><td>July</td><td>LinkedIn</td><td>$600</td><td>CPD &lt; $10</td></tr>
+      <tr><td>Warm Retargeting</td><td>July</td><td>LinkedIn</td><td>$600</td><td>CPA &lt; $80</td></tr>
+      <tr><td>Visual Retargeting</td><td>July</td><td>Instagram</td><td>$500</td><td>CTR &gt; 2%</td></tr>
+      <tr style="background:rgba(0,0,0,.03)"><td colspan="3"><strong>3-Month Ad Total</strong></td><td><strong>$5,000</strong></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh"><div class="sd"></div><h2>🤖 Agentic Workflow System</h2></div>
+  <p style="font-size:14px;color:var(--ts);margin-bottom:24px">Six automated pipelines that multiply reach without multiplying headcount. Setup: 2–3 days. Ongoing: ~2 hrs/week. Replaces ~40% of manual content production.</p>
+
+  <div class="wc">
+    <div class="wh"><div class="wt">Workflow 1: One Shoot → 12 Assets</div><span class="bx g">30 min human effort</span></div>
+    <div class="wb">
+      <div class="ws"><div class="sn">1</div><div class="st">AI transcription (Whisper / AssemblyAI)</div></div>
+      <div class="ws"><div class="sn">2</div><div class="st">AI clip selector — finds 3 best 30-sec moments</div></div>
+      <div class="ws"><div class="sn">3</div><div class="st">Auto-subtitle generation in EN + Arabic</div></div>
+      <div class="ws"><div class="sn">4</div><div class="st">Auto-format: 9:16 for TK/IG/SC · 16:9 for YT/LI</div></div>
+      <div class="ws"><div class="sn">5</div><div class="st">AI caption writer — 5 platform-specific captions from transcript</div></div>
+      <div class="ws"><div class="sn">6</div><div class="st">Scheduler auto-posts across all platforms</div></div>
+      <div class="wo"><strong>Output:</strong> 1 recording → 12 platform-native content pieces · Tools: Opus Clip, Descript, Buffer, ElevenLabs</div>
+    </div>
+  </div>
+
+  <div class="wc">
+    <div class="wh"><div class="wt">Workflow 3: Competitor Pulse Monitor</div><span class="bx o">Daily 9am brief</span></div>
+    <div class="wb">
+      <div class="ws"><div class="sn">1</div><div class="st">Apify scraper monitors Wavemaker, Starcom, Hashtag, Zenith on LI/IG daily</div></div>
+      <div class="ws"><div class="sn">2</div><div class="st">AI summarizes top-performing posts from past 24 hours</div></div>
+      <div class="ws"><div class="sn">3</div><div class="st">Generates "reactive post brief" for content team</div></div>
+      <div class="ws"><div class="sn">4</div><div class="st">If competitor post goes viral (&gt;100 reactions) → instant Slack alert</div></div>
+      <div class="wo"><strong>Tools:</strong> Apify + GPT-4o + Make.com + Slack webhook</div>
+    </div>
+  </div>
+
+  <div class="wc">
+    <div class="wh"><div class="wt">Workflow 5: CEO LinkedIn Amplifier</div><span class="bx g">3–5× reach multiplier</span></div>
+    <div class="wb">
+      <div class="ws"><div class="sn">1</div><div class="st">Zapier detects new post from Mohammed Tayem's LinkedIn</div></div>
+      <div class="ws"><div class="sn">2</div><div class="st">Company page auto-comments within 1 hour</div></div>
+      <div class="ws"><div class="sn">3</div><div class="st">3 employees get Slack notification to engage within 2 hours</div></div>
+      <div class="ws"><div class="sn">4</div><div class="st">If post hits &gt;50 reactions → boost with $50 LinkedIn sponsored</div></div>
+      <div class="wo"><strong>Tools:</strong> Zapier + Slack + Buffer + LinkedIn Campaign Manager</div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="sd g"></div><h2>July KPI Targets — Convert</h2></div>
+  <div class="kg">
+    <div class="kc"><div class="kv">300+</div><div class="km">Report Downloads</div><div class="kp">All Platforms</div></div>
+    <div class="kc"><div class="kv">10–15</div><div class="km">Discovery Calls</div><div class="kp">LinkedIn + Email</div></div>
+    <div class="kc"><div class="kv">500K+</div><div class="km">LI Impressions</div><div class="kp">LinkedIn</div></div>
+  </div>
+
+  <div class="co t"><div class="ci">📈</div><div><strong>ROI Benchmark:</strong> If this 3-month strategy generates 2 new client projects at AED 500K each, the ROI is <strong>100× the total investment</strong>. The GCC Report alone (as lead magnet) could generate that.</div></div>
+
+  <div class="sh"><div class="sd r"></div><h2>Quick Start — Before May 1</h2></div>
+  <div class="card">
+    <ul class="cl">
+      <li><div class="cb"></div>Update Instagram profile picture (logo, not "U")</li>
+      <li><div class="cb"></div>Create 5 Instagram Story Highlights</li>
+      <li><div class="cb"></div>Register TikTok Business account (@entourageintl)</li>
+      <li><div class="cb"></div>Register Snapchat Business account</li>
+      <li><div class="cb"></div>Pull event footage archive (G20, Roshn, Ithra minimum)</li>
+      <li><div class="cb"></div>Book CEO for first video shoot (30–60 min)</li>
+      <li><div class="cb"></div>Brief Arabic copywriter on brand voice + tone</li>
+      <li><div class="cb"></div>Set up Make.com + connect all social platform APIs</li>
+      <li><div class="cb"></div>Set up Apify for competitor monitoring</li>
+      <li><div class="cb"></div>Create LinkedIn Lead Gen form for report pre-registration</li>
+    </ul>
+  </div>
+
+  <div class="ft"><div>Entourage International — 3-Month Strategy May–July 2026</div><div>Antigravity · Confidential</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entourage — GCC Agency Social Media Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-2: #f5f5f7;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --text-tertiary: #8e8e93;
+    --accent: #0071e3;
+    --accent-green: #34c759;
+    --accent-red: #ff3b30;
+    --accent-orange: #ff9500;
+    --border: #d2d2d7;
+    --border-light: #e8e8ed;
+    --radius: 12px;
+    --radius-lg: 18px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 860px; margin: 0 auto; padding: 60px 48px; }
+
+  .cover {
+    background: linear-gradient(160deg, #0a0a0a 0%, #1c1c1e 100%);
+    color: white;
+    padding: 80px 60px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(52,199,89,0.2) 0%, transparent 70%);
+  }
+  .cover-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #30d158; margin-bottom: 20px; }
+  .cover h1 { font-size: 40px; font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .cover-sub { font-size: 18px; color: rgba(255,255,255,0.55); font-weight: 300; margin-bottom: 40px; }
+  .cover-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 32px;
+  }
+  .cover-stat .num { font-size: 32px; font-weight: 700; color: #30d158; }
+  .cover-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; color: var(--text-primary); }
+  h3 { font-size: 17px; font-weight: 600; color: var(--text-primary); margin: 32px 0 14px; }
+  h4 { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin: 20px 0 10px; }
+
+  .section-header { display: flex; align-items: center; gap: 12px; margin: 48px 0 20px; }
+  .section-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .section-dot.green { background: var(--accent-green); }
+  .section-dot.orange { background: var(--accent-orange); }
+
+  /* Agency cards */
+  .agency-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .agency-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .agency-rank {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .agency-name { font-size: 17px; font-weight: 700; }
+  .agency-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .agency-body { padding: 20px 24px; }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--surface-2);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
+  .badge.green { background: rgba(52,199,89,0.12); color: #1a7a3a; }
+  .badge.blue { background: rgba(0,113,227,0.1); color: #0040a3; }
+
+  .tactic-list { list-style: none; }
+  .tactic-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  .tactic-list li:last-child { border-bottom: none; }
+  .tactic-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .formula-box {
+    background: #1d1d1f;
+    color: white;
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin: 20px 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .formula-box .accent { color: #30d158; }
+  .formula-box .dim { color: rgba(255,255,255,0.45); }
+
+  .platform-table-wrap { overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border-light); margin-bottom: 20px; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 20px 0;
+    display: flex;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .callout.tip { background: rgba(52,199,89,0.06); border-left: 3px solid var(--accent-green); }
+  .callout.note { background: rgba(0,113,227,0.06); border-left: 3px solid var(--accent); }
+  .callout.warning { background: rgba(255,149,0,0.06); border-left: 3px solid var(--accent-orange); }
+  .callout-icon { font-size: 18px; flex-shrink: 0; }
+  .callout-content { color: var(--text-primary); line-height: 1.6; }
+  .callout-content strong { font-weight: 600; }
+
+  .footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; font-size: 12px; color: var(--text-tertiary); }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 40px 48px; }
+    .cover { break-after: page; }
+    .agency-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="cover-tag">GCC Market Intelligence</div>
+    <h1>Top 5 GCC Agency<br>Social Media Analysis</h1>
+    <div class="cover-sub">Strategy patterns, reach formulas, and competitive benchmarks</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><div class="num">$315M</div><div class="lbl">GCC Influencer Market 2025</div></div>
+      <div class="cover-stat"><div class="num">13.9%</div><div class="lbl">CAGR to 2032</div></div>
+      <div class="cover-stat"><div class="num">115%</div><div class="lbl">UAE Social Media Penetration</div></div>
+    </div>
+  </div>
+
+  <!-- Agency Rankings -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2>The Top 5 Agencies</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Rank</th><th>Agency</th><th>HQ</th><th>Specialty</th><th>Recognition</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td><strong>Wavemaker MENA</strong></td><td>Dubai</td><td>AI-driven media + creator strategy</td><td><span class="badge green">Media AOTY 2024</span></td></tr>
+      <tr><td><strong>2</strong></td><td><strong>Spark Foundry ME</strong></td><td>Dubai</td><td>Creative + performance fusion</td><td><span class="badge blue">AOTY Shortlisted</span></td></tr>
+      <tr><td><strong>3</strong></td><td><strong>Starcom ME</strong></td><td>Dubai</td><td>Data, tech & cultural integration</td><td><span class="badge green">21% YoY growth</span></td></tr>
+      <tr><td><strong>4</strong></td><td><strong>Zenith MENA</strong></td><td>Dubai</td><td>ROI-first media strategy</td><td><span class="badge blue">Top new biz H1'24</span></td></tr>
+      <tr><td><strong>5</strong></td><td><strong>Hashtag Agency</strong></td><td>Dubai</td><td>Social-first GCC strategy</td><td><span class="badge green">GCC Report 2025</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Agency 1 -->
+  <div class="section-header">
+    <div class="section-dot green"></div>
+    <h2>Agency Breakdown</h2>
+  </div>
+
+  <div class="agency-card">
+    <div class="agency-header">
+      <div>
+        <div class="agency-rank">1</div>
+      </div>
+      <div style="flex:1;margin-left:14px;">
+        <div class="agency-name">Wavemaker MENA</div>
+        <div class="agency-sub">Media Agency of the Year 2024 | Dubai, UAE</div>
+      </div>
+    </div>
+    <div class="agency-body">
+      <table>
+        <thead><tr><th>Format</th><th>Platform</th><th>Why It Works</th></tr></thead>
+        <tbody>
+          <tr><td>Carousel data decks</td><td>LinkedIn</td><td>Decision-makers share industry stats → B2B virality</td></tr>
+          <tr><td>Short-form BTS video</td><td>Instagram Reels</td><td>Humanizes the agency, gets algorithmic push</td></tr>
+          <tr><td>Esports content</td><td>TikTok</td><td>Taps into +57% gaming creator growth GCC</td></tr>
+          <tr><td>Award/milestone posts</td><td>LinkedIn + IG</td><td>Social proof triggers peer engagement</td></tr>
+        </tbody>
+      </table>
+      <h4>Reach Strategy</h4>
+      <ul class="tactic-list">
+        <li><span class="tactic-num">1</span>AI-augmented audience targeting — optimizes delivery windows by country/time zone</li>
+        <li><span class="tactic-num">2</span>Cross-client halo effect — posts about major brand wins (L'Oréal, P&G) earn credibility by association</li>
+        <li><span class="tactic-num">3</span>Platform-native formats — never reposts the same content across platforms</li>
+        <li><span class="tactic-num">4</span>Bilingual always — EN + Arabic versions of all major content</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="agency-card">
+    <div class="agency-header">
+      <div class="agency-rank">3</div>
+      <div style="flex:1;margin-left:14px;">
+        <div class="agency-name">Starcom Middle East</div>
+        <div class="agency-sub">21% YoY Growth | Data + Tech + Cultural Integration</div>
+      </div>
+    </div>
+    <div class="agency-body">
+      <table>
+        <thead><tr><th>Format</th><th>Platform</th><th>Why It Works</th></tr></thead>
+        <tbody>
+          <tr><td>Ramadan campaign reels</td><td>Instagram + TikTok</td><td>Peak social usage during Ramadan; emotional resonance</td></tr>
+          <tr><td>Stat snapshot graphics</td><td>Instagram</td><td>Saves signal quality; pushed to Explore algorithm</td></tr>
+          <tr><td>Long-form case studies</td><td>LinkedIn</td><td>Attracts prospects doing agency due diligence</td></tr>
+          <tr><td>Team culture videos</td><td>YouTube</td><td>Builds recruitment brand and client trust</td></tr>
+        </tbody>
+      </table>
+      <h4>Key Advantage</h4>
+      <p style="font-size:14px;color:var(--text-secondary);">Seasonal calendar mastery — Ramadan, Eid, National Days planned 3 months in advance. Seasonal content spikes reach by 200–400%.</p>
+    </div>
+  </div>
+
+  <div class="agency-card">
+    <div class="agency-header">
+      <div class="agency-rank">5</div>
+      <div style="flex:1;margin-left:14px;">
+        <div class="agency-name">Hashtag Social Media Agency</div>
+        <div class="agency-sub">Published GCC Brand Challenges Report 2025 | Snapchat-First</div>
+      </div>
+    </div>
+    <div class="agency-body">
+      <table>
+        <thead><tr><th>Format</th><th>Platform</th><th>Why It Works</th></tr></thead>
+        <tbody>
+          <tr><td>GCC Social Media Report release</td><td>LinkedIn + IG</td><td>Authoritative, shareable, positions as the GCC expert</td></tr>
+          <tr><td>Trend reaction content</td><td>TikTok + Reels</td><td>Algorithm rewards recency; peaks at 2–3× engagement</td></tr>
+          <tr><td>Snapchat-first content</td><td>Snapchat</td><td>Only agency actively leveraging GCC's Snapchat dominance</td></tr>
+          <tr><td>Before/after client metrics</td><td>Instagram</td><td>Social proof in the most digestible format</td></tr>
+        </tbody>
+      </table>
+      <h4>The Publish-to-Amplify Flywheel</h4>
+      <p style="font-size:14px;color:var(--text-secondary);">Release a report → get covered by Campaign ME → drive profile growth → establish category authority. This is the single most powerful reach strategy in GCC B2B.</p>
+    </div>
+  </div>
+
+  <!-- Cross-agency patterns -->
+  <div class="section-header">
+    <div class="section-dot orange"></div>
+    <h2>The 5 Tactics All Top Agencies Use</h2>
+  </div>
+
+  <div style="background:var(--surface);border-radius:var(--radius);border:1px solid var(--border-light);padding:0;overflow:hidden;">
+    <ul class="tactic-list" style="padding: 8px 24px;">
+      <li><span class="tactic-num" style="background:#ff9500;">⚡</span><div><strong>Bilingual Posting</strong> — Arabic + English on every major post. Arabic posts get 2.3× more saves in KSA/Kuwait</div></li>
+      <li><span class="tactic-num" style="background:#0071e3;">📅</span><div><strong>Cultural Calendar Dominance</strong> — Ramadan, Eid, National Days, Vision 2030. Seasonal content spikes reach 200–400%</div></li>
+      <li><span class="tactic-num" style="background:#34c759;">🤝</span><div><strong>Micro-Influencer Partnerships</strong> — 58% of UAE consumers trust micro-influencers more than celebrities. 6–8% engagement vs 1.2% global average</div></li>
+      <li><span class="tactic-num" style="background:#ff3b30;">🎞️</span><div><strong>Short-Form Video as Priority</strong> — UAE has 118.5% TikTok penetration. Reels + TikTok dominate algorithm distribution</div></li>
+      <li><span class="tactic-num" style="background:#5e5ce6;">📊</span><div><strong>Data + Proof in Every Post</strong> — Posts with a number in the caption get 22% more engagement in MENA</div></li>
+    </ul>
+  </div>
+
+  <!-- Platform table -->
+  <h3>Platform Strategy by Country</h3>
+  <table>
+    <thead>
+      <tr><th>Platform</th><th>Top Country</th><th>Best Content Type</th><th>Peak Hours (GST)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Instagram</strong></td><td>UAE</td><td>Lifestyle, Luxury, Reels</td><td>8–10pm</td></tr>
+      <tr><td><strong>TikTok</strong></td><td>UAE + Qatar</td><td>Trend-reactive, comedy, how-to</td><td>7–11pm</td></tr>
+      <tr><td><strong>Snapchat</strong></td><td>Saudi + Kuwait</td><td>Stories, 24hr exclusives, AR filters</td><td>9pm–12am</td></tr>
+      <tr><td><strong>LinkedIn</strong></td><td>UAE + Saudi (B2B)</td><td>Thought leadership, case studies</td><td>8–10am</td></tr>
+      <tr><td><strong>YouTube</strong></td><td>All GCC</td><td>Long-form campaigns, brand films</td><td>Weekends</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Master Formula -->
+  <div class="formula-box">
+    <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:16px;letter-spacing:0.1em;">GCC REACH FORMULA</div>
+    <div style="font-size:17px;font-weight:600;margin-bottom:20px;">
+      REACH = <span class="accent">CULTURAL TIMING</span> × <span class="accent">BILINGUAL AUTHENTICITY</span><br>
+      <span style="margin-left:60px;color:rgba(255,255,255,0.3)">──────────────────────────────────</span><br>
+      <span style="margin-left:60px;">Vanity Content + Platform Mismatch</span>
+    </div>
+    <div class="dim">Maximize by:</div>
+    <div>→ <span class="accent">Post Ramadan content 2 weeks BEFORE Ramadan</span></div>
+    <div>→ Partner with micro-influencers (10K–100K): highest trust in GCC</div>
+    <div>→ Keep Arabic copy in Gulf dialect (not formal MSA) for KSA/UAE</div>
+    <div>→ Always include a data point or result in every post</div>
+    <div>→ <span class="accent">Use Snapchat for Saudi-first campaigns</span> — ignored by most agencies</div>
+    <div>→ Let employees post first to seed organic reach before boosting</div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-content">
+      <strong>Biggest Missed Opportunity:</strong> Most focus on Instagram/TikTok but ignore Snapchat — which has the highest daily active usage per capita in Saudi Arabia and Kuwait. Agencies like Hashtag that crack Snapchat get outsized reach at a fraction of the competition.
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-content">
+      <strong>What NOT to do:</strong> Post Western content translated to Arabic. GCC audiences immediately identify and disengage from content that wasn't created FOR them. Local cultural nuance isn't optional — it's the product.
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>GCC Agency Social Media Analysis</div>
+    <div>Antigravity · April 2026 · Sources: Campaign ME, Qoruz GCC Report 2025, P&S Intelligence</div>
+  </div>
+
+</div>
+</body>
+</html>

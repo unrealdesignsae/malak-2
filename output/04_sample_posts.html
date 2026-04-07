@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Entourage — Sample Posts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  :root{--bg:#f5f5f7;--surface:#fff;--s2:#f5f5f7;--tp:#1d1d1f;--ts:#6e6e73;--tt:#8e8e93;--ac:#0071e3;--ag:#34c759;--ar:#ff3b30;--ao:#ff9500;--bd:#d2d2d7;--bl:#e8e8ed;--r:12px;--rl:18px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--tp);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased}
+  .page{max-width:960px;margin:0 auto;padding:60px 48px}
+
+  /* Cover */
+  .cover{background:linear-gradient(150deg,#1a1a2e,#16213e,#0f3460);color:#fff;padding:80px 60px;border-radius:var(--rl);margin-bottom:48px;position:relative;overflow:hidden}
+  .cover::after{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(255,149,0,.2),transparent 70%)}
+  .ctag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#ff9f0a;margin-bottom:20px}
+  .cover h1{font-size:44px;font-weight:700;line-height:1.08;letter-spacing:-.8px;margin-bottom:16px}
+  .csub{font-size:17px;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:36px}
+  .post-index{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+  .pi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 16px}
+  .pi-n{font-size:10px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.1em;margin-bottom:5px}
+  .pi-t{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
+  .pi-p{font-size:11px;color:rgba(255,255,255,.45)}
+
+  h2{font-size:22px;font-weight:700;letter-spacing:-.3px}
+  h3{font-size:17px;font-weight:600;margin:0 0 12px}
+  h4{font-size:11px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.1em;margin:16px 0 8px}
+
+  .sh{display:flex;align-items:center;gap:12px;margin:52px 0 22px}
+  .sd{width:8px;height:8px;border-radius:50%;background:var(--ac);flex-shrink:0}
+  .sd.g{background:var(--ag)}.sd.o{background:var(--ao)}.sd.r{background:var(--ar)}
+
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--surface);border-radius:var(--r);border:1px solid var(--bl);overflow:hidden;margin-bottom:20px;font-size:13.5px}
+  th{background:var(--s2);padding:10px 14px;text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ts);border-bottom:1px solid var(--bl)}
+  td{padding:11px 14px;border-bottom:1px solid var(--bl);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+
+  .tag{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;display:inline-block}
+  .tag.li{background:rgba(0,113,227,.1);color:#0040a3}
+  .tag.ig{background:rgba(225,48,108,.1);color:#9b1b49}
+  .tag.tk{background:rgba(26,26,46,.12);color:#1a1a2e}
+  .tag.sn{background:rgba(255,204,0,.18);color:#7a5700}
+  .tag.ca{background:rgba(191,90,242,.1);color:#7b2fbe}
+  .tag.po{background:rgba(52,199,89,.1);color:#1a7a3a}
+
+  /* Post card */
+  .post-card{background:var(--surface);border-radius:var(--rl);border:1px solid var(--bl);margin-bottom:48px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.07)}
+  .post-header{padding:20px 26px;border-bottom:1px solid var(--bl);display:flex;align-items:flex-start;gap:16px;background:var(--s2)}
+  .post-num{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;flex-shrink:0}
+  .pn1{background:linear-gradient(135deg,#0071e3,#0040a3);color:#fff}
+  .pn2{background:linear-gradient(135deg,#e1306c,#833ab4);color:#fff}
+  .pn3{background:linear-gradient(135deg,#c9a84c,#8b6914);color:#fff}
+  .pn4{background:linear-gradient(135deg,#0a84ff,#0040a3);color:#fff}
+  .pn5{background:linear-gradient(135deg,#ffcc00,#ff9500);color:#1a1a2e}
+  .pn6{background:linear-gradient(135deg,#ff4040,#1a1a2e);color:#fff}
+  .post-meta{flex:1}
+  .post-title{font-size:17px;font-weight:700;margin-bottom:6px}
+  .post-tags{display:flex;gap:7px;flex-wrap:wrap}
+
+  .post-body{padding:26px 26px}
+
+  /* Image gallery */
+  .img-gallery{display:grid;gap:10px;margin-bottom:22px}
+  .img-gallery.single{grid-template-columns:1fr}
+  .img-gallery.duo{grid-template-columns:1fr 1fr}
+  .img-gallery.trio{grid-template-columns:1fr 1fr 1fr}
+  .img-gallery.five{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
+  .img-gallery.five .main-img{grid-column:1 / -1}
+
+  .post-img{width:100%;border-radius:10px;display:block;object-fit:cover;border:1px solid var(--bl)}
+  .post-img.tall{max-height:380px;object-fit:cover}
+  .post-img.card{max-height:220px;object-fit:cover}
+
+  .img-label{font-size:11px;color:var(--ts);text-align:center;margin-top:5px;font-weight:500}
+
+  /* Caption box */
+  .caption-box{background:#1d1d1f;color:#f5f5f7;border-radius:10px;padding:20px 22px;font-size:13.5px;line-height:1.8;margin-bottom:20px;white-space:pre-wrap}
+  .caption-box .hl{color:#30d158;font-weight:600}
+  .caption-box .em{color:#0a84ff}
+  .caption-box .ar{color:#ff9f0a}
+
+  .spec-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+  .spec{background:var(--s2);border:1px solid var(--bl);border-radius:8px;padding:10px 14px}
+  .spec-l{font-size:10px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+  .spec-v{font-size:13.5px;font-weight:600;color:var(--tp)}
+
+  .why-box{background:rgba(52,199,89,.06);border-left:3px solid var(--ag);border-radius:0 8px 8px 0;padding:14px 18px;font-size:13.5px;margin-top:12px}
+  .why-box strong{color:#1a7a3a}
+
+  .ft{margin-top:64px;padding-top:24px;border-top:1px solid var(--bl);display:flex;justify-content:space-between;font-size:12px;color:var(--tt)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="ctag">Production-Ready Content Samples</div>
+    <h1>Sample Posts —<br>Ready to Publish</h1>
+    <div class="csub">6 posts chosen for immediate impact. Real data, real clients, real visuals.</div>
+    <div class="post-index">
+      <div class="pi"><div class="pi-n">POST 01</div><div class="pi-t">G20 Saudi Arabia</div><div class="pi-p">LinkedIn Carousel · 5 slides</div></div>
+      <div class="pi"><div class="pi-n">POST 02</div><div class="pi-t">Roshn Drone Show</div><div class="pi-p">Instagram Reel + TikTok</div></div>
+      <div class="pi"><div class="pi-n">POST 03</div><div class="pi-t">Richard Mille</div><div class="pi-p">Instagram Premium</div></div>
+      <div class="pi"><div class="pi-n">POST 04</div><div class="pi-t">CEO Perspective</div><div class="pi-p">LinkedIn Article</div></div>
+      <div class="pi"><div class="pi-n">POST 05</div><div class="pi-t">Arabic — Roshn</div><div class="pi-p">Snapchat Story · KSA</div></div>
+      <div class="pi"><div class="pi-n">POST 06</div><div class="pi-t">Desert Polo Stats</div><div class="pi-p">Instagram · Luxury</div></div>
+    </div>
+  </div>
+
+  <!-- Why These 6 -->
+  <div class="sh"><div class="sd"></div><h2>Why These 6 Posts?</h2></div>
+  <table>
+    <thead><tr><th>Post</th><th>Reason Selected</th><th>Strategic Pillar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>G20 Carousel</strong></td><td>Highest-credibility client; carousels get 3× engagement on LinkedIn</td><td>🏆 Proof</td></tr>
+      <tr><td><strong>Roshn Drone Reel</strong></td><td>Visual stunt — drone shows have highest organic share rate in GCC</td><td>🏆 Proof</td></tr>
+      <tr><td><strong>Richard Mille</strong></td><td>Luxury sector signals elite positioning; AlUla has viral potential</td><td>🏆 Proof</td></tr>
+      <tr><td><strong>CEO Perspective</strong></td><td>CEO content gets 3–5× company page reach on LinkedIn</td><td>💬 Perspective</td></tr>
+      <tr><td><strong>Arabic Snapchat</strong></td><td>Gulf dialect + Snapchat = untapped KSA channel no competitor owns</td><td>🏆 Proof</td></tr>
+      <tr><td><strong>Desert Polo Stats</strong></td><td>Stat-led luxury post — combines visual beauty with hard data</td><td>🏆 Proof</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══ POST 1 ═══ -->
+  <div class="sh"><div class="sd"></div><h2>Post 01 — G20 LinkedIn Carousel</h2></div>
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-num pn1">1</div>
+      <div class="post-meta">
+        <div class="post-title">G20 Saudi Arabia 2020 — The Scale Nobody Talks About</div>
+        <div class="post-tags">
+          <span class="tag li">LinkedIn</span>
+          <span class="tag ca">5-Slide Carousel</span>
+          <span class="tag po">Proof</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-body">
+      <!-- Images -->
+      <div class="img-gallery five">
+        <div class="main-img">
+          <img src="images/post_1_g20_linkedin_cover_1775591071211.png" class="post-img" alt="G20 Cover Slide">
+          <div class="img-label">Slide 1 — Cover: "24 Conferences. 28 Countries."</div>
+        </div>
+        <div>
+          <img src="images/post_1_g20_slide2_carousel_1775591276955.png" class="post-img card" alt="G20 Slide 2">
+          <div class="img-label">Slide 2 — The Brief</div>
+        </div>
+        <div>
+          <img src="images/post_1_g20_slide3_carousel_1775591292767.png" class="post-img card" alt="G20 Slide 3">
+          <div class="img-label">Slide 3 — The Operation</div>
+        </div>
+        <div>
+          <img src="images/post_1_g20_slide4_results_1775591306123.png" class="post-img card" alt="G20 Slide 4">
+          <div class="img-label">Slide 4 — Results</div>
+        </div>
+        <div>
+          <img src="images/post_1_g20_slide5_cta_1775591318929.png" class="post-img card" alt="G20 Slide 5 CTA">
+          <div class="img-label">Slide 5 — CTA</div>
+        </div>
+      </div>
+
+      <h4>Caption</h4>
+      <div class="caption-box"><span class="hl">24 conferences.</span>
+<span class="hl">28 countries.</span>
+<span class="hl">Zero failures.</span>
+
+When Saudi Arabia hosted the G20 Presidency in 2020, they needed
+an agency that could operate at government scale — not just event scale.
+
+We built the communication infrastructure for 24 working group
+meetings across 4 cities, managed 180 media accreditations,
+and coordinated with 28 delegations simultaneously.
+
+This wasn't just an event.
+It was a lesson in what "no margin for error" actually means.
+
+→ Swipe to see the operation →
+
+<span class="em">#G20Saudi #SaudiArabia #EntourageIntl #GCCEvents #EventManagement</span></div>
+
+      <div class="spec-row">
+        <div class="spec"><div class="spec-l">Format</div><div class="spec-v">1:1 Carousel · 5 slides</div></div>
+        <div class="spec"><div class="spec-l">Boost Budget</div><div class="spec-v">$200 LinkedIn Sponsored</div></div>
+        <div class="spec"><div class="spec-l">Target</div><div class="spec-v">CMOs · Govt Comms · UAE+KSA</div></div>
+      </div>
+      <div class="why-box"><strong>Why this works:</strong> LinkedIn carousels with bold opening stats get saved 4× more than text posts. The G20 is the single most credible proof point Entourage has — it's the opener to every possible pitch deck.</div>
+    </div>
+  </div>
+
+  <!-- ═══ POST 2 ═══ -->
+  <div class="sh"><div class="sd g"></div><h2>Post 02 — Roshn Saudi League Drone Reel</h2></div>
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-num pn2">2</div>
+      <div class="post-meta">
+        <div class="post-title">Roshn Saudi League Season Close — 2,000 Drones</div>
+        <div class="post-tags">
+          <span class="tag ig">Instagram Reel</span>
+          <span class="tag tk">TikTok</span>
+          <span class="tag po">Proof</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-body">
+      <div class="img-gallery duo">
+        <div>
+          <img src="images/post_2_roshn_instagram_1775591085590.png" class="post-img tall" alt="Roshn Instagram Visual">
+          <div class="img-label">Instagram Visual — Roshn League Close</div>
+        </div>
+        <div>
+          <img src="images/roshn_saudi_league_2025_details_1775590919268.png" class="post-img tall" alt="Roshn Saudi League Details">
+          <div class="img-label">Campaign Reference — Roshn Saudi League</div>
+        </div>
+      </div>
+
+      <h4>Caption</h4>
+      <div class="caption-box"><span class="hl">2,000 drones.</span>
+One sky.
+One closing ceremony.
+
+We closed the Roshn Saudi League season the only way we know how —
+by turning the night sky into a canvas.
+
+Entourage managed the full production of the drone light show
+entertainment experience for one of Saudi's biggest sporting events.
+
+This is what we mean when we say: <span class="hl">we don't do ordinary.</span>
+
+#RoshnSaudiLeague #EntourageIntl #SportEvents #KSA #درون</div>
+
+      <div class="spec-row">
+        <div class="spec"><div class="spec-l">Format</div><div class="spec-v">9:16 Vertical Reel</div></div>
+        <div class="spec"><div class="spec-l">Duration</div><div class="spec-v">30–45 seconds</div></div>
+        <div class="spec"><div class="spec-l">Hook (0–3s)</div><div class="spec-v">"2,000 drones" text on black</div></div>
+      </div>
+      <div class="why-box"><strong>Why this works:</strong> Drone shows are among the most organically shared content in GCC. The visual spectacle generates shares from non-followers. "2,000 drones" is impossible to scroll past.</div>
+    </div>
+  </div>
+
+  <!-- ═══ POST 3 ═══ -->
+  <div class="sh"><div class="sd" style="background:#c9a84c"></div><h2>Post 03 — Richard Mille Desert Polo</h2></div>
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-num pn3">3</div>
+      <div class="post-meta">
+        <div class="post-title">Richard Mille Desert Polo — AlUla, Saudi Arabia</div>
+        <div class="post-tags">
+          <span class="tag ig">Instagram Premium</span>
+          <span class="tag po">Proof · Luxury</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-body">
+      <div class="img-gallery single">
+        <div>
+          <img src="images/post_3_richard_mille_luxury_1775591098831.png" class="post-img" alt="Richard Mille Luxury">
+          <div class="img-label">Richard Mille Desert Polo — AlUla Visual</div>
+        </div>
+      </div>
+
+      <h4>Caption</h4>
+      <div class="caption-box"><span class="hl">4 weeks of production.</span>
+AlUla's ancient desert as the backdrop.
+Richard Mille — the world's most exclusive watch brand.
+
+Some clients choose us because of our portfolio.
+Richard Mille chose us because there was no one else
+qualified to pull this off.
+
+The Desert Polo — where ultra-luxury meets the raw beauty
+of Saudi Arabia's most extraordinary landscape.
+
+<span class="em">#RichardMille #AlUla #DesertPolo #LuxuryEvents #EntourageIntl #SaudiArabia</span></div>
+
+      <div class="spec-row">
+        <div class="spec"><div class="spec-l">Format</div><div class="spec-v">4:5 Static Image</div></div>
+        <div class="spec"><div class="spec-l">Visual Tone</div><div class="spec-v">Warm amber · Cinematic</div></div>
+        <div class="spec"><div class="spec-l">Hashtag Strategy</div><div class="spec-v">AlUla + Luxury + Saudi</div></div>
+      </div>
+      <div class="why-box"><strong>Why this works:</strong> Luxury brands validate agencies. "Richard Mille" in your portfolio immediately drops a CMO's trust threshold. AlUla + Saudi + luxury is the perfect Vision 2030 × brand aspiration intersection.</div>
+    </div>
+  </div>
+
+  <!-- ═══ POST 4 ═══ -->
+  <div class="sh"><div class="sd" style="background:#0a84ff"></div><h2>Post 04 — CEO Perspective (LinkedIn)</h2></div>
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-num pn4">4</div>
+      <div class="post-meta">
+        <div class="post-title">Mohammed Tayem — "The Mistake Every Brand Makes with Events"</div>
+        <div class="post-tags">
+          <span class="tag li">CEO's Personal LinkedIn</span>
+          <span class="tag po" style="background:rgba(255,149,0,.12);color:#7a4800">Perspective</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-body">
+      <div class="img-gallery single">
+        <div>
+          <img src="images/post_4_ceo_perspective_linkedin_1775591113237.png" class="post-img" alt="CEO Perspective LinkedIn">
+          <div class="img-label">CEO LinkedIn Card — Mohammed Tayem</div>
+        </div>
+      </div>
+
+      <h4>Caption</h4>
+      <div class="caption-box">The biggest mistake brands make with events?
+
+They think the event IS the marketing.
+
+It's not.
+
+The event is the evidence.
+The marketing is everything you do with that evidence afterward.
+
+I've watched brands spend AED 5M on a launch event
+and then post one blurry photo on Instagram.
+
+Here's what we do instead:
+→ Plan the content capture BEFORE the event brief
+→ Assign 1 person as the "moments director" on the day
+→ Turn every event into 6 months of social content
+
+The brands that get this right?
+They're the ones you see everywhere.
+
+What's the best event-to-content moment you've ever seen?
+
+<span class="em">#EventMarketing #ContentStrategy #EntourageIntl #MiddleEast</span></div>
+
+      <div class="spec-row">
+        <div class="spec"><div class="spec-l">Posted From</div><div class="spec-v">Mohammed Tayem personal</div></div>
+        <div class="spec"><div class="spec-l">Post Length</div><div class="spec-v">~200 words (optimal)</div></div>
+        <div class="spec"><div class="spec-l">Auto-Boost?</div><div class="spec-v">If &gt;50 reactions → $50</div></div>
+      </div>
+      <div class="why-box"><strong>Why this works:</strong> CEO personal posts with a strong hook and tactical insight consistently outperform company pages by 3–5×. The "mistake" angle and question at the end drive comment engagement. This is the engine of the entire strategy.</div>
+    </div>
+  </div>
+
+  <!-- ═══ POST 5 ═══ -->
+  <div class="sh"><div class="sd" style="background:#ffcc00"></div><h2>Post 05 — Arabic Snapchat Story (KSA)</h2></div>
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-num pn5">5</div>
+      <div class="post-meta">
+        <div class="post-title">Arabic Roshn Post — Gulf Dialect · Snapchat KSA</div>
+        <div class="post-tags">
+          <span class="tag sn">Snapchat Story</span>
+          <span class="tag po">Proof · KSA-First</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-body">
+      <div class="img-gallery single">
+        <div>
+          <img src="images/post_arabic_roshn_snapchat_1775591333487.png" class="post-img" alt="Arabic Snapchat Story">
+          <div class="img-label">Arabic Snapchat Story — Roshn Saudi League · KSA Geo-Target</div>
+        </div>
+      </div>
+
+      <h4>Caption (Gulf Dialect / عامية خليجية)</h4>
+      <div class="caption-box"><span class="ar">٢٠٠٠ درون في سماء الرياض.</span>
+<span class="ar">ما شفتوا هذا الشي إلا معنا.</span>
+
+<span class="ar">إنتراج دبي — نحن اللي وراء احتفالية إغلاق دوري روشن</span>
+<span class="ar">للموسم الماضي. من الفكرة إلى التنفيذ.</span>
+
+<span class="ar">إذا عندك فعالية كبيرة في السعودية، تواصل معنا.</span>
+<span class="ar">نعرف كيف نخلي الناس ما تنسى.</span>
+
+<span class="em">#روشن_دوري #الدوري_السعودي #EntourageIntl #فعاليات_السعودية</span></div>
+
+      <div class="spec-row">
+        <div class="spec"><div class="spec-l">Format</div><div class="spec-v">9:16 Snap Story</div></div>
+        <div class="spec"><div class="spec-l">Duration</div><div class="spec-v">3 slides × 7 sec</div></div>
+        <div class="spec"><div class="spec-l">Geo-Target</div><div class="spec-v">KSA only</div></div>
+      </div>
+      <div class="why-box"><strong>Why this works:</strong> Snapchat has the highest daily usage per capita in Saudi Arabia. Gulf dialect (not MSA) gets 2.3× more saves and shares. This is the most-ignored channel in the GCC agency space — early mover advantage still available.</div>
+    </div>
+  </div>
+
+  <!-- ═══ POST 6 ═══ -->
+  <div class="sh"><div class="sd" style="background:#c9a84c"></div><h2>Post 06 — Desert Polo Stats Highlight</h2></div>
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-num pn6">6</div>
+      <div class="post-meta">
+        <div class="post-title">Richard Mille Desert Polo — The Numbers Behind the Luxury</div>
+        <div class="post-tags">
+          <span class="tag ig">Instagram Static</span>
+          <span class="tag li">LinkedIn</span>
+          <span class="tag po">Proof · Luxury</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-body">
+      <div class="img-gallery single">
+        <div>
+          <img src="images/desert_polo_stats_highlights_1775591004448.png" class="post-img" alt="Desert Polo Stats">
+          <div class="img-label">Desert Polo — Stats Highlight Card</div>
+        </div>
+      </div>
+
+      <h4>Caption</h4>
+      <div class="caption-box"><span class="hl">4 weeks. 1 desert. The world's most exclusive watch brand.</span>
+
+Logistics people think they know production.
+Event people think they know luxury.
+
+The Richard Mille Desert Polo in AlUla demands both.
+
+What it took to deliver this:
+→ <span class="hl">4 weeks</span> of on-site production in AlUla's ancient desert
+→ Coordination across VIP hospitality, polo field preparation &amp; media
+→ A creative team that understood: the landscape is the showroom
+
+When your venue is a UNESCO heritage site, you don't just plan an event.
+You conduct an expedition.
+
+<span class="em">#RichardMille #AlUla #EntourageIntl #LuxuryExperience #SaudiTourism</span></div>
+
+      <div class="spec-row">
+        <div class="spec"><div class="spec-l">Format</div><div class="spec-v">4:5 Static · Stat card</div></div>
+        <div class="spec"><div class="spec-l">Visual</div><div class="spec-v">Dark bg · gold data typography</div></div>
+        <div class="spec"><div class="spec-l">Boost</div><div class="spec-v">$100 · Luxury brand targeting</div></div>
+      </div>
+      <div class="why-box"><strong>Why this works:</strong> Stat-led posts in luxury positioning perform extremely well for B2B services — they communicate effort, scale, and exclusivity simultaneously. The "expedition" framing elevates Entourage beyond "event company."</div>
+    </div>
+  </div>
+
+  <div class="ft">
+    <div>Entourage International — Production-Ready Sample Posts</div>
+    <div>Antigravity · April 2026 · Confidential</div>
+  </div>
+</div>
+</body>
+</html>

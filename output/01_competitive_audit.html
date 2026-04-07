@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entourage — Competitive Social Media Audit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-2: #f5f5f7;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --text-tertiary: #8e8e93;
+    --accent: #0071e3;
+    --accent-green: #34c759;
+    --accent-red: #ff3b30;
+    --accent-orange: #ff9500;
+    --border: #d2d2d7;
+    --border-light: #e8e8ed;
+    --radius: 12px;
+    --radius-lg: 18px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 48px;
+  }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(160deg, #1d1d1f 0%, #2c2c2e 100%);
+    color: white;
+    padding: 80px 60px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,113,227,0.3) 0%, transparent 70%);
+  }
+  .cover-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #0a84ff;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .cover-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+  .cover-meta {
+    display: flex; gap: 32px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+  .cover-meta span { font-weight: 500; color: rgba(255,255,255,0.7); }
+
+  /* Section header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0 20px;
+  }
+  .section-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .section-dot.green { background: var(--accent-green); }
+  .section-dot.red { background: var(--accent-red); }
+  .section-dot.orange { background: var(--accent-orange); }
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+  }
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 28px 0 12px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 20px 0 10px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-light);
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  /* Stat pills */
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stat-pill .val {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .stat-pill .lbl {
+    color: var(--text-secondary);
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--surface-2);
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(0,0,0,0.015); }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge.green { background: rgba(52,199,89,0.12); color: #1a7a3a; }
+  .badge.red { background: rgba(255,59,48,0.12); color: #c0392b; }
+  .badge.orange { background: rgba(255,149,0,0.12); color: #b5620a; }
+  .badge.blue { background: rgba(0,113,227,0.1); color: #0040a3; }
+
+  /* Callout boxes */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+    display: flex;
+    gap: 16px;
+  }
+  .callout.important { background: rgba(255,59,48,0.06); border-left: 3px solid var(--accent-red); }
+  .callout.note { background: rgba(0,113,227,0.06); border-left: 3px solid var(--accent); }
+  .callout.tip { background: rgba(52,199,89,0.06); border-left: 3px solid var(--accent-green); }
+  .callout-icon { font-size: 20px; flex-shrink: 0; }
+  .callout-content { font-size: 14px; color: var(--text-primary); line-height: 1.6; }
+  .callout-content strong { font-weight: 600; }
+
+  /* Gap markers */
+  .gap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .gap-item:last-child { border-bottom: none; }
+  .gap-severity {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .sev-critical { background: var(--accent-red); }
+  .sev-high { background: var(--accent-orange); }
+  .sev-medium { background: #f4d03f; }
+  .gap-text { flex: 1; }
+  .gap-title { font-weight: 600; font-size: 14px; color: var(--text-primary); margin-bottom: 3px; }
+  .gap-desc { font-size: 13px; color: var(--text-secondary); }
+
+  /* Quote */
+  blockquote {
+    border-left: 2px solid var(--accent);
+    margin: 16px 0;
+    padding: 12px 20px;
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 14px;
+    background: var(--surface-2);
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* Action items */
+  .action-group { margin-bottom: 28px; }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .action-num.red { background: rgba(255,59,48,0.1); color: var(--accent-red); }
+  .action-num.orange { background: rgba(255,149,0,0.1); color: var(--accent-orange); }
+  .action-num.yellow { background: rgba(244,208,63,0.15); color: #8a6e00; }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 40px 48px; }
+    .cover { break-after: page; }
+    table { break-inside: avoid; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-tag">Confidential Strategy Document</div>
+    <h1>Competitive Social<br>Media Audit</h1>
+    <div class="cover-sub">Entourage International vs. Top GCC Marketing Agencies</div>
+    <div class="cover-meta">
+      <div>Prepared by <span>Antigravity</span></div>
+      <div>Date <span>April 2026</span></div>
+      <div>Version <span>1.0</span></div>
+    </div>
+  </div>
+
+  <!-- Snapshot -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2>Current Social Media Snapshot</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Platform</th><th>Handle</th><th>Followers</th><th>Activity</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Instagram</strong></td>
+        <td>@entourageintl</td>
+        <td><strong>5,399</strong></td>
+        <td>989 posts</td>
+        <td><span class="badge orange">🟡 Active</span></td>
+      </tr>
+      <tr>
+        <td><strong>LinkedIn</strong></td>
+        <td>entourage-marketing-&-events</td>
+        <td><strong>27,958</strong></td>
+        <td>Daily</td>
+        <td><span class="badge green">✅ Very Active</span></td>
+      </tr>
+      <tr>
+        <td><strong>YouTube</strong></td>
+        <td>entourageintl</td>
+        <td>—</td>
+        <td>Present</td>
+        <td><span class="badge blue">Present</span></td>
+      </tr>
+      <tr>
+        <td><strong>TikTok</strong></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge red">❌ Not Found</span></td>
+      </tr>
+      <tr>
+        <td><strong>Snapchat</strong></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge red">❌ Not Found</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout important">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-content">
+      <strong>The Gap:</strong> Your actual client roster (G20, Saudi Aramco, Richard Mille, Jordan Tourism Board) suggests a top-tier GCC agency. Your Instagram followers (5.4K) suggest a boutique shop. That gap is the opportunity.
+    </div>
+  </div>
+
+  <!-- Platform Deep Dive -->
+  <div class="section-header">
+    <div class="section-dot green"></div>
+    <h2>Platform Deep Dive</h2>
+  </div>
+
+  <div class="card">
+    <h3>LinkedIn — Your Strongest Platform ✅</h3>
+    <div class="stat-row">
+      <div class="stat-pill"><span class="val">27,958</span><span class="lbl">Followers</span></div>
+      <div class="stat-pill"><span class="val">57</span><span class="lbl">Peak reactions (Ithra)</span></div>
+      <div class="stat-pill"><span class="val">Daily</span><span class="lbl">Post frequency</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Posts with <strong>hard numbers</strong> dramatically outperform vague brand-speak posts. The Ithra Eid Al Fitr post (60,000 visitors / 28 activations) achieved the highest observed engagement at 57 reactions.</p>
+    <p style="font-size:13px;background:rgba(52,199,89,0.08);padding:10px 14px;border-radius:8px;color:#1a7a3a;"><strong>Verdict:</strong> Good foundation. Frequency is strong. Needs more hard-number case study posts and less generic brand copy.</p>
+  </div>
+
+  <div class="card">
+    <h3>Instagram — Underperforming Relative to Portfolio 🟡</h3>
+    <div class="stat-row">
+      <div class="stat-pill"><span class="val">5,399</span><span class="lbl">Followers</span></div>
+      <div class="stat-pill"><span class="val">989</span><span class="lbl">Posts</span></div>
+      <div class="stat-pill"><span class="val">5.4</span><span class="lbl">Followers per post</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">High production quality — dark, bold typography, strong visuals. But: no profile logo, no Story Highlights, and hashtag strategy limited to <code>#entourage</code> only — severely limiting discoverability.</p>
+    <p style="font-size:13px;background:rgba(255,149,0,0.08);padding:10px 14px;border-radius:8px;color:#7a4a0a;"><strong>Verdict:</strong> High quality, low reach distribution. Content is good but the strategy around discoverability is broken.</p>
+  </div>
+
+  <!-- Gaps -->
+  <div class="section-header">
+    <div class="section-dot red"></div>
+    <h2>Critical Gaps Identified</h2>
+  </div>
+
+  <div class="card">
+    <div class="gap-item">
+      <div class="gap-severity sev-critical"></div>
+      <div class="gap-text">
+        <div class="gap-title">No TikTok Account</div>
+        <div class="gap-desc">Missing the fastest-growing GCC platform — UAE has 118.5% penetration rate</div>
+      </div>
+      <span class="badge red">Critical</span>
+    </div>
+    <div class="gap-item">
+      <div class="gap-severity sev-critical"></div>
+      <div class="gap-text">
+        <div class="gap-title">No Snapchat Account</div>
+        <div class="gap-desc">Missing the #1 platform in Saudi Arabia & Kuwait by daily active usage</div>
+      </div>
+      <span class="badge red">Critical</span>
+    </div>
+    <div class="gap-item">
+      <div class="gap-severity sev-high"></div>
+      <div class="gap-text">
+        <div class="gap-title">No Instagram Story Highlights</div>
+        <div class="gap-desc">989 posts of work exist but visitors cannot browse by category in first 30 seconds</div>
+      </div>
+      <span class="badge orange">High</span>
+    </div>
+    <div class="gap-item">
+      <div class="gap-severity sev-high"></div>
+      <div class="gap-text">
+        <div class="gap-title">Profile Picture is Just "U"</div>
+        <div class="gap-desc">Zero brand recognition — should be the full entourage wordmark or logomark</div>
+      </div>
+      <span class="badge orange">High</span>
+    </div>
+    <div class="gap-item">
+      <div class="gap-severity sev-high"></div>
+      <div class="gap-text">
+        <div class="gap-title">No Arabic-First Content</div>
+        <div class="gap-desc">40% of GCC market share is Saudi Arabia — largely Arabic-first audience</div>
+      </div>
+      <span class="badge orange">High</span>
+    </div>
+    <div class="gap-item">
+      <div class="gap-severity sev-medium"></div>
+      <div class="gap-text">
+        <div class="gap-title">CEO Personal Brand Underutilized</div>
+        <div class="gap-desc">Mohammed Tayem has 13K LinkedIn followers — CEO posts get 3–5× company page reach</div>
+      </div>
+      <span class="badge blue">Medium</span>
+    </div>
+  </div>
+
+  <!-- Head to head -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2>Head-to-Head: LinkedIn Follower Comparison</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Agency</th><th>LinkedIn</th><th>Instagram</th><th>TikTok</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Wavemaker MENA</td><td>~50,000+</td><td>~15,000+</td><td><span class="badge green">Active</span></td></tr>
+      <tr><td>Starcom ME</td><td>~45,000+</td><td>~12,000+</td><td><span class="badge green">Active</span></td></tr>
+      <tr><td>Spark Foundry ME</td><td>~40,000+</td><td>~10,000+</td><td><span class="badge green">Active</span></td></tr>
+      <tr><td>Zenith MENA</td><td>~35,000+</td><td>~8,000+</td><td><span class="badge green">Active</span></td></tr>
+      <tr><td>Hashtag Agency</td><td>~20,000+</td><td>~12,000+</td><td><span class="badge green">Active</span></td></tr>
+      <tr style="background:rgba(0,113,227,0.04)"><td><strong>Entourage ←</strong></td><td><strong>27,958</strong></td><td><strong>5,399</strong></td><td><span class="badge red">None ❌</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout note">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-content">
+      Entourage's LinkedIn is actually <strong>competitive</strong> with Hashtag Agency and beating some mid-tier Publicis brands. The Instagram gap and the missing TikTok/Snapchat presence are the real structural problems.
+    </div>
+  </div>
+
+  <!-- Priority Actions -->
+  <div class="section-header">
+    <div class="section-dot orange"></div>
+    <h2>Priority Action Plan</h2>
+  </div>
+
+  <div class="action-group">
+    <h4>🔴 Quick Wins — Do This Week</h4>
+    <div class="action-item">
+      <div class="action-num red">1</div>
+      <div>Update Instagram profile picture → Replace "U" with the actual Entourage logo</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num red">2</div>
+      <div>Create 5 Story Highlights → "Events," "Campaigns," "Clients," "Culture," "Awards"</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num red">3</div>
+      <div>Add a metric to every next LinkedIn post → lead with a number, every time</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num red">4</div>
+      <div>Activate Mohammed Tayem's personal LinkedIn → 1 CEO post/week can 2–3× company reach</div>
+    </div>
+
+    <h4 style="margin-top:24px;">🟠 This Month</h4>
+    <div class="action-item">
+      <div class="action-num orange">5</div>
+      <div>Create TikTok account → Start with 5 existing videos from Ithra, Roshn repurposed as BTS</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num orange">6</div>
+      <div>Build an Arabic content series → 2 posts/week in Gulf dialect for KSA audience</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num orange">7</div>
+      <div>Expand Instagram hashtags → use 10–15 targeted tags per post (#DubaiEvents, #GCCAgency, etc.)</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num orange">8</div>
+      <div>Run a "portfolio reveal" week → 7 days, 7 projects, all with full metrics</div>
+    </div>
+
+    <h4 style="margin-top:24px;">🟡 Strategic — Next 90 Days</h4>
+    <div class="action-item">
+      <div class="action-num yellow">9</div>
+      <div>Publish a GCC Mega-Events Industry Report → Only Entourage can write this credibly. Use as lead gen.</div>
+    </div>
+    <div class="action-item">
+      <div class="action-num yellow">10</div>
+      <div>Launch Snapchat for KSA clients → Direct stories to Saudi government and corporate audience</div>
+    </div>
+  </div>
+
+  <div class="callout important">
+    <div class="callout-icon">🎯</div>
+    <div class="callout-content">
+      <strong>The Single Biggest Opportunity:</strong> You have G20 Saudi Arabia, Richard Mille, Saudi Aramco/Ithra, and Roshn Saudi League on your portfolio — and only 5,399 Instagram followers. The creative quality is already there. What's broken is the <em>distribution and discoverability</em> layer. Fix that before creating new formats.
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Entourage International — Competitive Audit</div>
+    <div>Antigravity · April 2026 · Confidential</div>
+  </div>
+
+</div>
+</body>
+</html>
