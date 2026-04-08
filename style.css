@@ -484,13 +484,15 @@ ul {
 
 /* ---------- Hero Section ---------- */
 .hero {
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 6rem 0 4rem;
+    padding: 5rem 0 3rem;
+    box-sizing: border-box;
 }
 
 .hero-bg {
@@ -600,11 +602,12 @@ ul {
     z-index: 2;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--container-pad);
     width: 100%;
+    height: calc(100vh - 8rem);
 }
 
 .hero-content {
@@ -617,7 +620,8 @@ ul {
 .hero-3d {
     flex: 1.2;
     position: relative;
-    height: 720px;
+    height: calc(100vh - 10rem);
+    max-height: 680px;
     min-width: 0;
     margin-right: -2rem;
 }
@@ -701,6 +705,7 @@ spline-viewer #logo {
 .hero-badge {
     display: inline-flex;
     align-items: center;
+    margin-top: 0;
     gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.78rem;
@@ -712,7 +717,7 @@ spline-viewer #logo {
     background: rgba(124, 58, 237, 0.08);
     border: 1px solid rgba(124, 58, 237, 0.2);
     border-radius: 100px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
 }
 .badge-dot {
     width: 6px;
@@ -730,9 +735,9 @@ spline-viewer #logo {
     font-family: var(--font-heading);
     font-size: clamp(2.8rem, 7vw, 5.5rem);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.02;
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 .title-line {
     display: block;
@@ -752,7 +757,7 @@ spline-viewer #logo {
 .hero-subtitle {
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     color: var(--text-muted);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     min-height: 1.8em;
 }
 .typed-text {
@@ -771,15 +776,15 @@ spline-viewer #logo {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 /* Hero Stats */
 .hero-stats {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
-    padding-top: 3rem;
+    gap: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
 }
 .stat {
