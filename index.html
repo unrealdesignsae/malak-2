@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unreal AI Studio — Agentic AI Agency | UAE</title>
+    <meta name="description" content="Unreal AI Studio is a UAE-based agentic AI agency delivering intelligent design, technology, and marketing solutions. Where intelligence meets imagination.">
+    <meta name="keywords" content="AI agency UAE, agentic AI, AI design, AI marketing, AI technology, Dubai AI, automation agency">
+    <meta property="og:title" content="Unreal AI Studio — Agentic AI Agency">
+    <meta property="og:description" content="Where Intelligence Meets Imagination. UAE's premier agentic AI agency for design, technology, and marketing.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_AE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader" aria-hidden="true">
+        <div class="loader-inner">
+            <div class="loader-logo">U</div>
+            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor" aria-hidden="true"></div>
+    <div id="cursor-follower" class="cursor-follower" aria-hidden="true"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo" aria-label="Unreal AI Studio Home">
+                <span class="logo-mark">U</span>
+                <span class="logo-text">UNREAL <span class="logo-accent">AI STUDIO</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                <li role="none"><a href="#process" role="menuitem">Process</a></li>
+                <li role="none"><a href="#work" role="menuitem">Work</a></li>
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#contact" role="menuitem" class="nav-cta">Start a Project</a></li>
+            </ul>
+            <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg" aria-hidden="true">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="grid-lines"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge reveal-up">
+                <span class="badge-dot"></span>
+                UAE's Premier Agentic AI Agency
+            </div>
+            <h1 class="hero-title reveal-up">
+                <span class="title-line">Where</span>
+                <span class="title-line title-gradient">Intelligence</span>
+                <span class="title-line">Meets</span>
+                <span class="title-line title-gradient">Imagination</span>
+            </h1>
+            <p class="hero-subtitle reveal-up">
+                We design, build, and scale <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
+            </p>
+            <div class="hero-actions reveal-up">
+                <a href="#contact" class="btn btn-primary" id="heroCTA">
+                    <span>Start Your Project</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#work" class="btn btn-ghost">
+                    <span>View Our Work</span>
+                </a>
+            </div>
+            <div class="hero-stats reveal-up">
+                <div class="stat">
+                    <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-target="30">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-label">Countries Served</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">What We Do</span>
+                <h2 class="section-title">Agentic AI <span class="text-gradient">Services</span></h2>
+                <p class="section-desc">We harness autonomous AI agents to transform how businesses design, build, and grow — delivering intelligent solutions that operate, adapt, and evolve on their own.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Design -->
+                <div class="service-card reveal-up" data-delay="0">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="6" y="6" width="36" height="36" rx="4"/>
+                            <circle cx="24" cy="24" r="8"/>
+                            <path d="M24 6v4M24 38v4M6 24h4M38 24h4"/>
+                            <path d="M11.5 11.5l2.8 2.8M33.7 33.7l2.8 2.8M11.5 36.5l2.8-2.8M33.7 14.3l2.8-2.8"/>
+                        </svg>
+                    </div>
+                    <span class="service-number">01</span>
+                    <h3 class="service-title">AI Design</h3>
+                    <p class="service-desc">Generative design systems that create, iterate, and perfect brand identities, interfaces, and visual experiences — powered by autonomous creative agents.</p>
+                    <ul class="service-list">
+                        <li>Brand Identity & Strategy</li>
+                        <li>UI/UX Design Systems</li>
+                        <li>Generative Visual Assets</li>
+                        <li>Motion Design & Animation</li>
+                        <li>3D Visualization</li>
+                    </ul>
+                    <div class="service-glow"></div>
+                </div>
+                <!-- Technology -->
+                <div class="service-card reveal-up" data-delay="150">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 8l-4 32M38 8l-4 32"/>
+                            <path d="M8 16h32M8 32h32"/>
+                            <circle cx="24" cy="24" r="4"/>
+                            <path d="M24 20v-4M24 32v-4M20 24h-4M32 24h-4"/>
+                        </svg>
+                    </div>
+                    <span class="service-number">02</span>
+                    <h3 class="service-title">AI Technology</h3>
+                    <p class="service-desc">Autonomous AI systems that build, deploy, and manage intelligent applications — from custom LLM pipelines to self-orchestrating multi-agent workflows.</p>
+                    <ul class="service-list">
+                        <li>Custom AI Agent Development</li>
+                        <li>LLM Integration & Fine-tuning</li>
+                        <li>Workflow Automation</li>
+                        <li>Full-Stack Web & Mobile</li>
+                        <li>Data Engineering & Analytics</li>
+                    </ul>
+                    <div class="service-glow"></div>
+                </div>
+                <!-- Marketing -->
+                <div class="service-card reveal-up" data-delay="300">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 40V20l8-4v24M20 40V14l8-4v30M32 40V8l8-4v36"/>
+                            <path d="M6 40h36"/>
+                        </svg>
+                    </div>
+                    <span class="service-number">03</span>
+                    <h3 class="service-title">AI Marketing</h3>
+                    <p class="service-desc">Intelligent marketing engines that research, create, distribute, and optimize content autonomously — driving growth while you focus on your business.</p>
+                    <ul class="service-list">
+                        <li>AI Content Generation</li>
+                        <li>SEO & Search Optimization</li>
+                        <li>Social Media Automation</li>
+                        <li>Performance Ad Campaigns</li>
+                        <li>Analytics & Growth Strategy</li>
+                    </ul>
+                    <div class="service-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">How We Work</span>
+                <h2 class="section-title">Our <span class="text-gradient">Process</span></h2>
+                <p class="section-desc">A battle-tested workflow that turns ambitious ideas into production-ready AI solutions — fast.</p>
+            </div>
+            <div class="process-timeline">
+                <div class="timeline-line" aria-hidden="true"></div>
+                <div class="process-step reveal-left" data-step="1">
+                    <div class="step-marker">
+                        <span class="step-num">01</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Discovery</h3>
+                        <p>We deep-dive into your business, market, and goals. AI-powered research uncovers insights humans miss, giving us a strategic edge from day one.</p>
+                    </div>
+                </div>
+                <div class="process-step reveal-right" data-step="2">
+                    <div class="step-marker">
+                        <span class="step-num">02</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Strategy</h3>
+                        <p>We architect the solution — choosing the right AI models, workflows, and technologies. Every decision is data-driven and precision-engineered.</p>
+                    </div>
+                </div>
+                <div class="process-step reveal-left" data-step="3">
+                    <div class="step-marker">
+                        <span class="step-num">03</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Build</h3>
+                        <p>Our AI agents and engineers work in tandem — rapid iteration, continuous feedback, and autonomous quality assurance. Weeks, not months.</p>
+                    </div>
+                </div>
+                <div class="process-step reveal-right" data-step="4">
+                    <div class="step-marker">
+                        <span class="step-num">04</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Launch</h3>
+                        <p>Seamless deployment with monitoring agents that watch performance 24/7. We don't just launch — we ensure everything runs flawlessly.</p>
+                    </div>
+                </div>
+                <div class="process-step reveal-left" data-step="5">
+                    <div class="step-marker">
+                        <span class="step-num">05</span>
+                    </div>
+                    <div class="step-content">
+                        <h3>Scale</h3>
+                        <p>Continuous AI-driven optimization. Our agents learn, adapt, and improve your systems over time — your competitive advantage compounds daily.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Case Studies Section -->
+    <section id="work" class="work section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Our Work</span>
+                <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
+                <p class="section-desc">Real results from real clients. Here's how we've transformed businesses with agentic AI.</p>
+            </div>
+            <div class="work-grid">
+                <article class="work-card reveal-up" data-delay="0">
+                    <div class="work-image">
+                        <img src="assets/case-study-brand.png" alt="Nexus Realty brand identity redesign" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">AI Design</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Nexus Realty</h3>
+                        <p>Complete brand identity overhaul using generative AI — from logo system to 200+ marketing assets delivered in 2 weeks.</p>
+                        <div class="work-tags">
+                            <span>Brand Identity</span>
+                            <span>Generative Design</span>
+                            <span>Visual System</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="work-card reveal-up" data-delay="150">
+                    <div class="work-image">
+                        <img src="assets/case-study-tech.png" alt="AION Intelligence AI dashboard platform" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">AI Technology</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>AION Intelligence</h3>
+                        <p>Multi-agent autonomous building management system with real-time analytics, predictive maintenance, and energy optimization.</p>
+                        <div class="work-tags">
+                            <span>AI Agents</span>
+                            <span>IoT Platform</span>
+                            <span>Analytics</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="work-card reveal-up" data-delay="300">
+                    <div class="work-image">
+                        <img src="assets/case-study-marketing.png" alt="Meridian Capital marketing campaign" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">AI Marketing</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3>Meridian Capital</h3>
+                        <p>AI-driven social media engine generating 120+ posts/month with autonomous scheduling, A/B testing, and 340% engagement lift.</p>
+                        <div class="work-tags">
+                            <span>Content Engine</span>
+                            <span>Social Media</span>
+                            <span>Growth</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content reveal-left">
+                    <span class="section-tag">About Us</span>
+                    <h2 class="section-title">We Build the<br><span class="text-gradient">Future, Today</span></h2>
+                    <p class="about-text">
+                        Unreal AI Studio is a UAE-born, globally-minded agentic AI agency. We don't just use AI as a tool — we deploy autonomous AI agents that think, create, and execute alongside your team.
+                    </p>
+                    <p class="about-text">
+                        Founded by technologists and creatives who believe the next era of business belongs to those who embrace intelligent autonomy. From Dubai's skyline to global markets, we're engineering the invisible workforce of tomorrow.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Lightning Fast</h4>
+                                <p>AI agents work 24/7 — delivering in weeks what takes months.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <div>
+                                <h4>Always On</h4>
+                                <p>Autonomous systems that monitor, optimize, and improve continuously.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <div>
+                                <h4>World-Class Quality</h4>
+                                <p>Enterprise-grade solutions with the agility of a startup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats reveal-right">
+                    <div class="stats-card">
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="30">0</span><span class="stat-suffix">+</span>
+                                <span class="stat-label">Clients</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
+                                <span class="stat-label">Satisfaction</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number" data-target="5">0</span>
+                                <span class="stat-label">Countries</span>
+                            </div>
+                        </div>
+                        <div class="stats-decoration" aria-hidden="true">
+                            <div class="deco-ring"></div>
+                            <div class="deco-ring ring-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Clients <span class="text-gradient">Say</span></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal-up" data-delay="0">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <blockquote>
+                        <p>"Unreal AI Studio didn't just build us a website — they deployed an AI system that generates leads while we sleep. Our inbound tripled in 60 days."</p>
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div>
+                            <strong>Ahmed Khalil</strong>
+                            <span>CEO, Nexus Realty Group</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal-up" data-delay="150">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <blockquote>
+                        <p>"Their AI marketing engine replaced a team of 4 content writers and outperformed them. The ROI was visible within the first month."</p>
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SR</div>
+                        <div>
+                            <strong>Sara Rashid</strong>
+                            <span>CMO, Meridian Capital</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal-up" data-delay="300">
+                    <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+                    <blockquote>
+                        <p>"From concept to deployment in 3 weeks. The autonomous building intelligence platform they built is years ahead of anything else in the market."</p>
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MH</div>
+                        <div>
+                            <strong>Mohammed Hassan</strong>
+                            <span>CTO, AION Intelligence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <span class="section-tag">Get in Touch</span>
+                    <h2 class="section-title">Let's Build<br><span class="text-gradient">Something Unreal</span></h2>
+                    <p class="contact-desc">Ready to transform your business with agentic AI? Tell us about your project and we'll craft a custom roadmap — no obligations, just possibilities.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:hello@unreal.ae">hello@unreal.ae</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <a href="tel:+971567502350">+971 567 50 23 50</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div>
+                                <span class="contact-label">Office</span>
+                                <span>Dubai, United Arab Emirates</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="contact-form-wrap reveal-right">
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="design">AI Design</option>
+                                <option value="technology">AI Technology</option>
+                                <option value="marketing">AI Marketing</option>
+                                <option value="full">Full-Service Package</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell Us About Your Project</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Describe your project, goals, and timeline..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                            <span>Send Message</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
+                        <div id="formSuccess" class="form-success" hidden>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <p>Message sent successfully! We'll be in touch within 24 hours.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#hero" class="nav-logo">
+                        <span class="logo-mark">U</span>
+                        <span class="logo-text">UNREAL <span class="logo-accent">AI STUDIO</span></span>
+                    </a>
+                    <p>UAE's premier agentic AI studio. Where intelligence meets imagination.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">AI Design</a></li>
+                        <li><a href="#services">AI Technology</a></li>
+                        <li><a href="#services">AI Marketing</a></li>
+                        <li><a href="#services">Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:hello@unreal.ae">hello@unreal.ae</a></li>
+                        <li><a href="tel:+971567502350">+971 567 50 23 50</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Unreal AI Studio. All rights reserved.</p>
+                <div class="footer-badge">
+                    <span>Built with</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <span>AI</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
