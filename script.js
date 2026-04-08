@@ -248,6 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Hide any previous success/error messages
+        formSuccess.hidden = true;
+        formSuccess.classList.remove('form-error');
+
         // Submit via FormSubmit API (sends real email to hello@unreal.ae)
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Sending...</span>';
@@ -261,19 +265,25 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
             if (response.ok) {
-                contactForm.style.display = 'none';
                 formSuccess.hidden = false;
+                formSuccess.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <p>Message sent successfully! We'll be in touch within 24 hours.</p>
+                `;
+                contactForm.reset();
             } else {
                 throw new Error('Failed to send');
             }
         })
         .catch(() => {
-            // Fallback: open mailto if fetch fails
-            const subject = encodeURIComponent(`New Project Inquiry — ${service}`);
-            const body = encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`
-            );
-            window.location.href = `mailto:hello@unreal.ae?subject=${subject}&body=${body}`;
+            // Show error + fallback mailto link
+            formSuccess.hidden = false;
+            formSuccess.classList.add('form-error');
+            formSuccess.innerHTML = `
+                <p>Could not send automatically. <a href="mailto:hello@unreal.ae?subject=${encodeURIComponent('New Project Inquiry — ' + service)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nService: ' + service + '\n\nMessage:\n' + message)}" style="color:var(--accent);text-decoration:underline;">Click here to email us directly.</a></p>
+            `;
+        })
+        .finally(() => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Send Message</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
         });
