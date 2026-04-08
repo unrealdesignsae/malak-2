@@ -695,8 +695,9 @@ spline-viewer #logo {
         text-align: center;
         height: 100%;
         gap: 0;
-        padding: 5rem 1.5rem 2rem;
-        justify-content: center;
+        padding: 0 1.5rem;
+        justify-content: flex-end;
+        padding-bottom: 4rem;
         position: relative;
     }
     .hero-content {
@@ -705,26 +706,27 @@ spline-viewer #logo {
         position: relative;
         z-index: 3;
     }
-    /* Robot as background element — right side, half visible */
+    /* Robot — right side, 80% height, bottom-anchored, no fade */
     .hero-3d {
         position: absolute !important;
-        right: -20% !important;
-        top: 10% !important;
-        bottom: auto !important;
+        right: -15% !important;
+        top: auto !important;
+        bottom: 0 !important;
         left: auto !important;
-        width: 70% !important;
-        height: 70vh !important;
+        width: 65% !important;
+        height: 80vh !important;
         margin: 0 !important;
         order: unset;
         z-index: 1;
-        opacity: 0.35;
-        -webkit-mask-image: linear-gradient(to left, transparent 0%, black 30%, black 70%, transparent 100%) !important;
-        mask-image: linear-gradient(to left, transparent 0%, black 30%, black 70%, transparent 100%) !important;
+        opacity: 0.3;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
         pointer-events: none;
+        overflow: visible !important;
     }
     .hero-3d spline-viewer {
-        transform: scale(1.2) translateY(0) !important;
-        transform-origin: center center;
+        transform: scale(1.1) translateY(0) !important;
+        transform-origin: center bottom;
     }
     .hero-3d-glow {
         display: none;
@@ -741,15 +743,9 @@ spline-viewer #logo {
     }
     .hero-actions {
         justify-content: center;
-        margin-bottom: 2rem;
     }
-    .hero-stats {
-        justify-content: center;
-        gap: 1.5rem;
-        padding-top: 1rem;
-        position: relative;
-        z-index: 3;
-    }
+    /* Hide stats and scroll on mobile */
+    .hero-stats,
     .scroll-indicator {
         display: none !important;
     }
@@ -757,22 +753,16 @@ spline-viewer #logo {
 
 @media (max-width: 480px) {
     .hero-split {
-        padding: 4.5rem 1rem 2rem;
+        padding: 0 1rem;
+        padding-bottom: 3rem;
     }
     .hero-3d {
-        right: -30% !important;
-        width: 80% !important;
-        opacity: 0.3;
+        right: -20% !important;
+        width: 75% !important;
+        opacity: 0.25;
     }
     .hero-title {
         font-size: clamp(1.9rem, 10vw, 2.8rem);
-    }
-    .hero-stats {
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    .stat-divider {
-        display: none;
     }
 }
 
