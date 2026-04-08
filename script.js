@@ -248,24 +248,35 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Build mailto link with form data
-        const subject = encodeURIComponent(`New Project Inquiry — ${service}`);
-        const body = encodeURIComponent(
-            `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`
-        );
-        const mailtoLink = `mailto:hello@unreal.ae?subject=${subject}&body=${body}`;
-
-        // Open user's email client
-        window.location.href = mailtoLink;
-
-        // Show success state
+        // Submit via FormSubmit API (sends real email to hello@unreal.ae)
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Opening Email...</span>';
+        submitBtn.innerHTML = '<span>Sending...</span>';
 
-        setTimeout(() => {
-            contactForm.style.display = 'none';
-            formSuccess.hidden = false;
-        }, 1500);
+        const formData = new FormData(contactForm);
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                contactForm.style.display = 'none';
+                formSuccess.hidden = false;
+            } else {
+                throw new Error('Failed to send');
+            }
+        })
+        .catch(() => {
+            // Fallback: open mailto if fetch fails
+            const subject = encodeURIComponent(`New Project Inquiry — ${service}`);
+            const body = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`
+            );
+            window.location.href = `mailto:hello@unreal.ae?subject=${subject}&body=${body}`;
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Send Message</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+        });
     });
 
     function isValidEmail(email) {

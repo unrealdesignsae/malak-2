@@ -633,7 +633,7 @@ ul {
 .hero-3d spline-viewer {
     border-radius: 0;
     overflow: hidden;
-    transform: scale(1.15) translateY(3%);
+    transform: scale(1.0) translateY(2%);
     transform-origin: center bottom;
 }
 

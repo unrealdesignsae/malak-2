@@ -499,7 +499,13 @@
 
                 </div>
                 <div class="contact-form-wrap reveal-right">
-                    <form id="contactForm" class="contact-form" novalidate>
+                    <form id="contactForm" class="contact-form" action="https://formsubmit.co/hello@unreal.ae" method="POST">
+                        <!-- FormSubmit Config -->
+                        <input type="hidden" name="_subject" value="New Inquiry — Unreal AI Studio">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://unreal.ae/#contact">
+                        <input type="text" name="_honey" style="display:none">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" placeholder="John Doe" required>
