@@ -687,13 +687,13 @@ spline-viewer #logo {
     .hero {
         height: auto;
         min-height: 100vh;
-        padding: 5rem 0 6rem;
+        padding: 4.5rem 0 3rem;
     }
     .hero-split {
         flex-direction: column;
         text-align: center;
         height: auto;
-        gap: 2rem;
+        gap: 0;
         padding: 0 1.5rem;
     }
     .hero-content {
@@ -708,35 +708,54 @@ spline-viewer #logo {
         right: auto !important;
         top: auto !important;
         bottom: auto !important;
-        width: 100% !important;
-        height: 400px;
-        margin-right: 0 !important;
+        width: 80% !important;
+        height: 260px;
+        margin: 0 auto !important;
         order: -1;
+        -webkit-mask-image: none !important;
+        mask-image: none !important;
     }
     .hero-3d spline-viewer {
         transform: scale(1.0) translateY(0) !important;
     }
+    .hero-3d-glow {
+        display: none;
+    }
+    .hero-title {
+        font-size: clamp(2rem, 9vw, 3rem);
+        margin-bottom: 0.8rem;
+    }
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
     .hero-actions {
         justify-content: center;
+        margin-bottom: 1.5rem;
     }
     .hero-stats {
         justify-content: center;
         gap: 1.5rem;
+        padding-top: 1.2rem;
+    }
+    .scroll-indicator {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
     .hero {
-        padding: 4rem 0 5rem;
+        padding: 4rem 0 2.5rem;
     }
     .hero-split {
         padding: 0 1rem;
     }
     .hero-3d {
-        height: 320px;
+        height: 220px;
+        width: 70% !important;
     }
     .hero-title {
-        font-size: clamp(2.2rem, 10vw, 3rem);
+        font-size: clamp(1.8rem, 10vw, 2.5rem);
     }
     .hero-stats {
         gap: 1rem;
