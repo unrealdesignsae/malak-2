@@ -615,10 +615,11 @@ ul {
 
 /* 3D Scene Container */
 .hero-3d {
-    flex: 1;
+    flex: 1.2;
     position: relative;
-    height: 600px;
+    height: 720px;
     min-width: 0;
+    margin-right: -2rem;
 }
 
 .hero-3d spline-viewer {
@@ -643,7 +644,30 @@ ul {
 
 /* Remove Spline watermark */
 .hero-3d spline-viewer::part(logo) {
-    display: none;
+    display: none !important;
+}
+
+/* Hide "Built with Spline" overlay badge */
+.hero-3d spline-viewer {
+    position: relative;
+}
+.hero-3d spline-viewer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 60px;
+    background: var(--bg-primary);
+    z-index: 10;
+}
+
+/* Force-hide the Spline watermark link */
+spline-viewer #logo {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 @media (max-width: 968px) {
@@ -656,8 +680,9 @@ ul {
     }
     .hero-3d {
         width: 100%;
-        height: 400px;
+        height: 500px;
         order: -1;
+        margin-right: 0;
     }
     .hero-actions {
         justify-content: center;
@@ -669,7 +694,7 @@ ul {
 
 @media (max-width: 480px) {
     .hero-3d {
-        height: 300px;
+        height: 380px;
     }
 }
 

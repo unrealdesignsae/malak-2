@@ -4,6 +4,28 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ---------- Hide Spline Watermark ----------
+    function hideSplineWatermark() {
+        const viewer = document.querySelector('spline-viewer');
+        if (!viewer || !viewer.shadowRoot) return false;
+        const logo = viewer.shadowRoot.querySelector('#logo');
+        if (logo) {
+            logo.style.display = 'none';
+            logo.style.visibility = 'hidden';
+            logo.style.opacity = '0';
+            logo.style.pointerEvents = 'none';
+            return true;
+        }
+        return false;
+    }
+    // Try immediately, then retry every 500ms until found (Spline loads async)
+    const watermarkInterval = setInterval(() => {
+        if (hideSplineWatermark()) clearInterval(watermarkInterval);
+    }, 500);
+    // Stop trying after 15 seconds
+    setTimeout(() => clearInterval(watermarkInterval), 15000);
+
+
     // ---------- Loader ----------
     const loader = document.getElementById('loader');
     window.addEventListener('load', () => {
