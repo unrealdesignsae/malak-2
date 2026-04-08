@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </head>
 <body>
     <!-- Loader -->
@@ -63,46 +64,80 @@
             <div class="orb orb-3"></div>
             <div class="grid-lines"></div>
         </div>
-        <div class="hero-content">
-            <div class="hero-badge reveal-up">
-                <span class="badge-dot"></span>
-                UAE's Premier Agentic AI Agency
+
+        <!-- Spotlight Effect -->
+        <svg class="hero-spotlight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3787 2842" fill="none" aria-hidden="true">
+            <g filter="url(#spotFilter)">
+                <ellipse cx="1924.71" cy="273.501" rx="1924.71" ry="273.501"
+                    transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
+                    fill="white" fill-opacity="0.21" />
+            </g>
+            <defs>
+                <filter id="spotFilter" x="0.860352" y="0.838989" width="3785.16" height="2840.26"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="151" result="effect1_foregroundBlur" />
+                </filter>
+            </defs>
+        </svg>
+
+        <!-- Interactive Mouse Spotlight -->
+        <div id="mouseSpotlight" class="mouse-spotlight" aria-hidden="true"></div>
+
+        <div class="hero-split">
+            <!-- Left: Content -->
+            <div class="hero-content">
+                <div class="hero-badge reveal-up">
+                    <span class="badge-dot"></span>
+                    UAE's Premier Agentic AI Agency
+                </div>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-line">Where</span>
+                    <span class="title-line title-gradient">Intelligence</span>
+                    <span class="title-line">Meets</span>
+                    <span class="title-line title-gradient">Imagination</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">
+                    We design, build, and scale <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
+                </p>
+                <div class="hero-actions reveal-up">
+                    <a href="#contact" class="btn btn-primary" id="heroCTA">
+                        <span>Start Your Project</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#work" class="btn btn-ghost">
+                        <span>View Our Work</span>
+                    </a>
+                </div>
+                <div class="hero-stats reveal-up">
+                    <div class="stat">
+                        <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="30">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="5">0</span>
+                        <span class="stat-label">Countries Served</span>
+                    </div>
+                </div>
             </div>
-            <h1 class="hero-title reveal-up">
-                <span class="title-line">Where</span>
-                <span class="title-line title-gradient">Intelligence</span>
-                <span class="title-line">Meets</span>
-                <span class="title-line title-gradient">Imagination</span>
-            </h1>
-            <p class="hero-subtitle reveal-up">
-                We design, build, and scale <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
-            </p>
-            <div class="hero-actions reveal-up">
-                <a href="#contact" class="btn btn-primary" id="heroCTA">
-                    <span>Start Your Project</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="#work" class="btn btn-ghost">
-                    <span>View Our Work</span>
-                </a>
-            </div>
-            <div class="hero-stats reveal-up">
-                <div class="stat">
-                    <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
-                    <span class="stat-label">Projects Delivered</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" data-target="30">0</span><span class="stat-suffix">+</span>
-                    <span class="stat-label">Happy Clients</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" data-target="5">0</span>
-                    <span class="stat-label">Countries Served</span>
-                </div>
+
+            <!-- Right: Interactive 3D Scene -->
+            <div class="hero-3d reveal-up">
+                <spline-viewer
+                    url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    style="width: 100%; height: 100%;"
+                ></spline-viewer>
+                <div class="hero-3d-glow"></div>
             </div>
         </div>
+
         <div class="scroll-indicator" aria-hidden="true">
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>

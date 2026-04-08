@@ -269,9 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(styleSheet);
 
-    // ---------- Parallax Orbs on Mouse Move ----------
+    // ---------- Parallax Orbs & Mouse Spotlight ----------
     const heroSection = document.querySelector('.hero');
     const orbs = document.querySelectorAll('.orb');
+    const mouseSpotlight = document.getElementById('mouseSpotlight');
 
     if (window.matchMedia('(pointer: fine)').matches && heroSection) {
         heroSection.addEventListener('mousemove', (e) => {
@@ -283,6 +284,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const speed = (i + 1) * 15;
                 orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
+
+            // Move spotlight to cursor position
+            if (mouseSpotlight) {
+                mouseSpotlight.style.left = `${e.clientX - rect.left}px`;
+                mouseSpotlight.style.top = `${e.clientY - rect.top}px`;
+            }
         });
     }
 
