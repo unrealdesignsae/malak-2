@@ -685,16 +685,19 @@ spline-viewer #logo {
 
 @media (max-width: 968px) {
     .hero {
-        height: auto;
+        height: 100vh;
         min-height: 100vh;
-        padding: 4.5rem 0 3rem;
+        padding: 0;
+        overflow: hidden;
     }
     .hero-split {
         flex-direction: column;
         text-align: center;
-        height: auto;
+        height: 100%;
         gap: 0;
-        padding: 0 1.5rem;
+        padding: 5rem 1.5rem 2rem;
+        justify-content: center;
+        position: relative;
     }
     .hero-content {
         text-align: center;
@@ -702,60 +705,67 @@ spline-viewer #logo {
         position: relative;
         z-index: 3;
     }
-    /* Override absolute positioning on mobile */
+    /* Robot as background element — right side, half visible */
     .hero-3d {
-        position: relative !important;
-        right: auto !important;
-        top: auto !important;
+        position: absolute !important;
+        right: -20% !important;
+        top: 10% !important;
         bottom: auto !important;
-        width: 80% !important;
-        height: 260px;
-        margin: 0 auto !important;
-        order: -1;
-        -webkit-mask-image: none !important;
-        mask-image: none !important;
+        left: auto !important;
+        width: 70% !important;
+        height: 70vh !important;
+        margin: 0 !important;
+        order: unset;
+        z-index: 1;
+        opacity: 0.35;
+        -webkit-mask-image: linear-gradient(to left, transparent 0%, black 30%, black 70%, transparent 100%) !important;
+        mask-image: linear-gradient(to left, transparent 0%, black 30%, black 70%, transparent 100%) !important;
+        pointer-events: none;
     }
     .hero-3d spline-viewer {
-        transform: scale(1.0) translateY(0) !important;
+        transform: scale(1.2) translateY(0) !important;
+        transform-origin: center center;
     }
     .hero-3d-glow {
         display: none;
     }
     .hero-title {
-        font-size: clamp(2rem, 9vw, 3rem);
+        font-size: clamp(2.2rem, 10vw, 3.5rem);
         margin-bottom: 0.8rem;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.8);
     }
     .hero-subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 1.2rem;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 1px 10px rgba(0,0,0,0.6);
     }
     .hero-actions {
         justify-content: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
     .hero-stats {
         justify-content: center;
         gap: 1.5rem;
-        padding-top: 1.2rem;
+        padding-top: 1rem;
+        position: relative;
+        z-index: 3;
     }
     .scroll-indicator {
-        display: none;
+        display: none !important;
     }
 }
 
 @media (max-width: 480px) {
-    .hero {
-        padding: 4rem 0 2.5rem;
-    }
     .hero-split {
-        padding: 0 1rem;
+        padding: 4.5rem 1rem 2rem;
     }
     .hero-3d {
-        height: 220px;
-        width: 70% !important;
+        right: -30% !important;
+        width: 80% !important;
+        opacity: 0.3;
     }
     .hero-title {
-        font-size: clamp(1.8rem, 10vw, 2.5rem);
+        font-size: clamp(1.9rem, 10vw, 2.8rem);
     }
     .hero-stats {
         gap: 1rem;
